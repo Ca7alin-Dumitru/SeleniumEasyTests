@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -39,6 +40,7 @@ public class InputFormSubmitPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public InputFormSubmitPage inputFormAndSubmit(String firstName,
                                                   String lastName,
                                                   String eMail,

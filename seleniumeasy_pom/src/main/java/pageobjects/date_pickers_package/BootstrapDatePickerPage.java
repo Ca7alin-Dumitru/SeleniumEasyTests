@@ -1,5 +1,6 @@
 package pageobjects.date_pickers_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -40,6 +41,7 @@ public class BootstrapDatePickerPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public BootstrapDatePickerPage dateExampleSection(String date){
         this.selectDateField.click();
         this.selectDateField.sendKeys(date);
@@ -70,6 +72,7 @@ public class BootstrapDatePickerPage extends PageObject {
         return new BootstrapDatePickerPage(driver);
     }
 
+    @Step
     public BootstrapDatePickerPage dateRangeExampleSection(String start, String end){
         this.selectStartDateDropDown.click();
         this.selectStartDateDropDown.sendKeys(start);

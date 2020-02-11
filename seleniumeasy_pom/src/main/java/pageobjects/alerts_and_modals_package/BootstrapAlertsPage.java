@@ -1,5 +1,6 @@
 package pageobjects.alerts_and_modals_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,7 @@ public class BootstrapAlertsPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public BootstrapAlertsPage alertMessages(String typeOfMessage){
         if(typeOfMessage.equalsIgnoreCase("success")){
             this.autoClosableSuccessButton.click();

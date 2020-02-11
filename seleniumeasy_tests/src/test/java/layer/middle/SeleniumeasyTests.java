@@ -211,7 +211,7 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/dynamic-data-loading-demo.html");
         DynamicDataLoadingPage dynamicDataLoadingPage = new DynamicDataLoadingPage(driver);
         dynamicDataLoadingPage.getNewUser();
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#loading > img"))));
         assertTrue(driver.findElement(By.cssSelector("#loading > img")).isDisplayed());
     }
@@ -369,7 +369,7 @@ public class SeleniumeasyTests {
     public void verifyBootstrapProgressBarPageTests() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/bootstrap-download-progress-demo.html");
         BootStrapProgressBarPage bootStrapProgressBarPage = new BootStrapProgressBarPage(driver);
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 60);
         assertTrue(driver.findElement(By.id("cricle-btn")).isDisplayed());
         assertEquals("0%",driver.findElement(By.className("percenttext")).getText());
         bootStrapProgressBarPage.progressBarForDownloadCheck();
@@ -380,7 +380,7 @@ public class SeleniumeasyTests {
     public void verifyJQueryDownloadProgressBarsPageTests() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/jquery-download-progress-bar-demo.html");
         JQueryDownloadProgressBarsPage jQueryDownloadProgressBarsPage = new JQueryDownloadProgressBarsPage(driver);
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 30);
         jQueryDownloadProgressBarsPage.startDownloadProcess();
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.className("progress-label")), "Complete!"));
         assertTrue(driver.findElement(By.className("progress-label")).isDisplayed());
@@ -579,6 +579,7 @@ public class SeleniumeasyTests {
         //Single CheckBox Demo section tests
         CheckboxDemoPage checkboxDemoPage = new CheckboxDemoPage(driver);
         //verify the 'click on this check box' is unchecked
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.id("txtAge")));
         assertTrue(driver.findElement(By.id("txtAge")).getCssValue("display").equalsIgnoreCase("none"));
         checkboxDemoPage.singleCheckboxDemoSection();
         //verify the 'click on this check box' is checked, displayed and shows the correct message
@@ -617,7 +618,9 @@ public class SeleniumeasyTests {
 
     @Parameters({"message", "valueA", "valueB"})
     @Test
-    public void verifySimpleFormDemoPagePositiveTests(String message, String valueA, String valueB) throws InterruptedException{
+    public void verifySimpleFormDemoPagePositiveTests(@Optional ("I started to love automation since last year!") String message,
+                                                      @Optional ("4") String valueA,
+                                                      @Optional ("5") String valueB) throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
         SimpleFormDemoPage sfmp = new SimpleFormDemoPage(driver);
         sfmp.singleInputFieldSection(message).

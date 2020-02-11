@@ -1,5 +1,6 @@
 package pageobjects.alerts_and_modals_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ public class FileDownloadPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public FileDownloadPage fileDownload(String input, String pathFile){
         this.enterDataAreaField.sendKeys(input);
         this.generateFileButton.click();

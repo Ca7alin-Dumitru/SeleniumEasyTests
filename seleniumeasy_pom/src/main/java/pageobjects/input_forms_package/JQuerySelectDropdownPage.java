@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +35,7 @@ public class JQuerySelectDropdownPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public JQuerySelectDropdownPage dropDownWithSearchBoxsection(String country){
         this.selectCountryDropdown.click();
         this.selectCountrySearchField.sendKeys(country);
@@ -42,6 +44,7 @@ public class JQuerySelectDropdownPage extends PageObject {
         return new JQuerySelectDropdownPage(driver);
     }
 
+    @Step
     public JQuerySelectDropdownPage selectMultipleValueSection(String [] states){
         for(String state : states){
             new Actions(driver).sendKeys(selectMultipleStateDropdown, state).perform();
@@ -56,6 +59,7 @@ public class JQuerySelectDropdownPage extends PageObject {
         return new JQuerySelectDropdownPage(driver);
     }
 
+    @Step
     public JQuerySelectDropdownPage dropdownWithDisabledValuesSection(String usOutlyingTerritories){
         this.selectUSTerritoriesDropdown.click();
         this.searchUSTerritoriesDropdown.sendKeys(usOutlyingTerritories);
@@ -64,6 +68,7 @@ public class JQuerySelectDropdownPage extends PageObject {
         return new JQuerySelectDropdownPage(driver);
     }
 
+    @Step
     public JQuerySelectDropdownPage dropdownWithCategoryRelatedOptions(String selectAFile){
         this.selectAFileDropDownWithCategoryRelatedOptions.click();
         this.selectAFileDropDownWithCategoryRelatedOptions.sendKeys(selectAFile);

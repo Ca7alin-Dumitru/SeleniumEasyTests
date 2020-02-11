@@ -1,5 +1,6 @@
 package pageobjects.common_elements.header;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ public class HeaderObject extends PageObject {
         super(driver);
     }
 
+    @Step
     public void goToSeleniumEasyHome(){
         this.seleniumEasyLogo.click();
     }

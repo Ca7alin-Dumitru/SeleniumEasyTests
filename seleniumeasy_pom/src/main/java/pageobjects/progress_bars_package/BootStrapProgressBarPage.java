@@ -1,5 +1,6 @@
 package pageobjects.progress_bars_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,7 @@ public class BootStrapProgressBarPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public BootStrapProgressBarPage progressBarForDownloadCheck(){
         this.downloadButton.click();
 

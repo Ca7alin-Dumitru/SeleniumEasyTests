@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ public class AjaxFormSubmitPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public AjaxFormSubmitPage inputFormWithLoadingIcon(String name, String comment){
         this.nameField.sendKeys(name);
         this.commentAreaField.sendKeys(comment);

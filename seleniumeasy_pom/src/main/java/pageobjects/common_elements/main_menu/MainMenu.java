@@ -1,5 +1,6 @@
 package pageobjects.common_elements.main_menu;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -46,6 +47,7 @@ public class MainMenu extends PageObject {
         super(driver);
     }
 
+    @Step
     public ChartsDemoPage goToChartsDemoPage(){
         this.othersDropDownToggleButton.click();
         new Actions(driver).click(chartsDemoSubMenu).perform();

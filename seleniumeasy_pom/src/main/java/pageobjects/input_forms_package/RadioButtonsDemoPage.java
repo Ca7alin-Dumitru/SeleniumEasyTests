@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,7 @@ public class RadioButtonsDemoPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public RadioButtonsDemoPage radioButtonDemoSection(String sex){
         if(sex.equalsIgnoreCase("male")){
             this.maleRadioButton.click();
@@ -46,6 +48,7 @@ public class RadioButtonsDemoPage extends PageObject {
         return new RadioButtonsDemoPage(driver);
     }
 
+    @Step
     public RadioButtonsDemoPage groupRadioButtonsDemoSection(String sex, int age){
         if(sex.equalsIgnoreCase("male")){
             this.maleSexRadioButton.click();

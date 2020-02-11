@@ -1,5 +1,6 @@
 package pageobjects.alerts_and_modals_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,24 +23,28 @@ public class WindowPopupModalPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public WindowPopupModalPage followOnTwitterActions(){
         this.followOnTwitterButton.click();
 
         return new WindowPopupModalPage(driver);
     }
 
+    @Step
     public WindowPopupModalPage likeUsOnFacebookActions(){
         this.likeUsOnFacebookButton.click();
 
         return new WindowPopupModalPage(driver);
     }
 
+    @Step
     public WindowPopupModalPage followTwitterAndFabeeokActions(){
         this.followTwitterAndFacebookButton.click();
 
         return new WindowPopupModalPage(driver);
     }
 
+    @Step
     public WindowPopupModalPage followAllButton(){
         this.followAllButton.click();
 
