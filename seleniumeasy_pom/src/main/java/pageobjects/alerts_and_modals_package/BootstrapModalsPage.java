@@ -37,7 +37,7 @@ public class BootstrapModalsPage extends PageObject {
     public BootstrapModalsPage singleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchSingleModalButton.click();
-            new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOf(closeButton)).click();
+            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeButton)).click();
         }else{
             this.launchSingleModalButton.click();
             this.saveChangesButton.click();
@@ -50,8 +50,8 @@ public class BootstrapModalsPage extends PageObject {
     public BootstrapModalsPage multipleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchMultipleModalButton.click();
-            new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOf(launchChildModalButton)).click();
-            new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOf(closeChildButton));
+            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(launchChildModalButton)).click();
+            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeChildButton));
             new Actions(driver).click(closeChildButton).perform();
             this.launchChildModalButton.sendKeys(Keys.ESCAPE);
         }
