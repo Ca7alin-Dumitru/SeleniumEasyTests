@@ -15,18 +15,18 @@ public class BootstrapModalsPage extends PageObject {
     //this webelements are for Single Modal Example section
     @FindBy(css = "body > div.container-fluid.text-center > div > div.col-md-6.text-left > div:nth-child(2) > div > div > div.panel-body > a")
     private WebElement launchSingleModalButton;
-    @FindBy(css = "#myModal0 > div > div > div.modal-footer > a.btn.btn-primary")
+    @FindBy(xpath = "//div[@id='myModal0']//a[@class='btn btn-primary'][contains(text(),'Save changes')]")
     private WebElement saveChangesButton;
-    @FindBy(css = "#myModal0 > div > div > div.modal-footer > a:nth-child(1)")
+    @FindBy(xpath = "//div[@id='myModal0']//a[@class='btn'][contains(text(),'Close')]")
     private WebElement closeButton;
 
 
     //this webelements are for Multiple Modal Example section
     @FindBy(css = "body > div.container-fluid.text-center > div > div.col-md-6.text-left > div:nth-child(3) > div > div > div.panel-body > a")
     private WebElement launchMultipleModalButton;
-    @FindBy(css = "#myModal > div > div > div.modal-body > a")
+    @FindBy(xpath = "//div[@class='modal-body']//a[@class='btn btn-primary'][contains(text(),'Launch modal')]")
     private WebElement launchChildModalButton;
-    @FindBy(css = "#myModal2 > div > div > div.modal-footer > a:nth-child(1)")
+    @FindBy(xpath = "//div[@id='myModal2']//a[@class='btn'][contains(text(),'Close')]")
     private WebElement closeChildButton;
 
     public BootstrapModalsPage(WebDriver driver){
