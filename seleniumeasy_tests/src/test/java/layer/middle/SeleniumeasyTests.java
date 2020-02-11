@@ -617,7 +617,9 @@ public class SeleniumeasyTests {
 
     @Parameters({"message", "valueA", "valueB"})
     @Test
-    public void verifySimpleFormDemoPagePositiveTests(String message, String valueA, String valueB) throws InterruptedException{
+    public void verifySimpleFormDemoPagePositiveTests(@Optional ("I started to love automation since last year!") String message,
+                                                      @Optional ("4") String valueA,
+                                                      @Optional ("5") String valueB) throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
         SimpleFormDemoPage sfmp = new SimpleFormDemoPage(driver);
         sfmp.singleInputFieldSection(message).

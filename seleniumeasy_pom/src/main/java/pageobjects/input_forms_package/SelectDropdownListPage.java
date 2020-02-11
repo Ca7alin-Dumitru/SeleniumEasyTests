@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,6 +53,7 @@ public class SelectDropdownListPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public SelectDropdownListPage selectListDemoSection(String day){
         if(day.equalsIgnoreCase("sunday")){
             this.sunday.click();
@@ -72,6 +74,7 @@ public class SelectDropdownListPage extends PageObject {
         return new SelectDropdownListPage(driver);
     }
 
+    @Step
     public SelectDropdownListPage multiSelectListDemoSection(String [] states){
         for (String state : states){
             if(state.equalsIgnoreCase("california")){

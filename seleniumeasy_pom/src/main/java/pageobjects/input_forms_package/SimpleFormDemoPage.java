@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,12 +25,14 @@ public class SimpleFormDemoPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public SimpleFormDemoPage singleInputFieldSection(String message){
         this.pleaseEnterYourMessageField.sendKeys(message);
         this.showMessageButton.click();
         return new SimpleFormDemoPage(driver);
     }
 
+    @Step
     public SimpleFormDemoPage twoInputFieldsSection(String valueA, String valueB){
         this.enterValueForAField.sendKeys(valueA);
         this.enterValueForBField.sendKeys(valueB);

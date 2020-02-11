@@ -1,5 +1,6 @@
 package pageobjects.list_box_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,12 +16,14 @@ public class DataListFilterPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public DataListFilterPage searchAttendees(String attendee){
         this.searchAttendeesField.sendKeys(attendee);
 
         return new DataListFilterPage(driver);
     }
 
+    @Step
     public DataListFilterPage searchAttendees(){
         this.searchAttendeesField.clear();
         this.searchAttendeesField.sendKeys(Keys.ENTER);

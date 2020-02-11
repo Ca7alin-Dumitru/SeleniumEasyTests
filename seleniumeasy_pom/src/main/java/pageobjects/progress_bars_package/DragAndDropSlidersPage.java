@@ -1,5 +1,6 @@
 package pageobjects.progress_bars_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,6 +28,7 @@ public class DragAndDropSlidersPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public DragAndDropSlidersPage firstLeftSliderMoves(int positionFirstLeftSlider, int positionSecondLeftSlider, int positionThirdLeftSlider,
                                                        int positionFirstRightSlider, int positionSecondRightSlider, int positionThirdRightSlider){
         Actions actions = new Actions(driver);

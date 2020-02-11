@@ -1,5 +1,6 @@
 package pageobjects.alerts_and_modals_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,10 +33,11 @@ public class BootstrapModalsPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public BootstrapModalsPage singleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchSingleModalButton.click();
-            new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(closeButton)).click();
+            new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOf(closeButton)).click();
         }else{
             this.launchSingleModalButton.click();
             this.saveChangesButton.click();
@@ -44,6 +46,7 @@ public class BootstrapModalsPage extends PageObject {
         return new BootstrapModalsPage(driver);
     }
 
+    @Step
     public BootstrapModalsPage multipleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchMultipleModalButton.click();

@@ -1,5 +1,6 @@
 package pageobjects.progress_bars_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,12 +17,14 @@ public class JQueryDownloadProgressBarsPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public JQueryDownloadProgressBarsPage startDownloadProcess(){
         this.startDownloadButton.click();
 
         return new JQueryDownloadProgressBarsPage(driver);
     }
 
+    @Step
     public JQueryDownloadProgressBarsPage closeDownloadProcess(){
         this.closeDialogButton.click();
 

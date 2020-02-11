@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -110,6 +111,7 @@ public class DemoHomePage extends PageObject{
         super(driver);
     }
 
+    @Step
     public DemoHomePage doThingsWithCarusel(){
         this.fourthCarulesControlButton.click();
         this.leftCaruselControlButon.click();
@@ -120,6 +122,7 @@ public class DemoHomePage extends PageObject{
         return new DemoHomePage(driver);
     }
 
+    @Step
     public DemoHomePage usingTheWizardProceedButtons(){
         this.startPractisingButton.click();
         this.proceedNextWizzardButtonFromBasic.click();
@@ -129,6 +132,7 @@ public class DemoHomePage extends PageObject{
         return new DemoHomePage(driver);
     }
 
+    @Step
     public DemoHomePage usingTheWizardMainButtons(){
         this.advancedWizzardButton.click();
         this.intermediateWizzardButton.click();
@@ -138,6 +142,7 @@ public class DemoHomePage extends PageObject{
         return new DemoHomePage(driver);
     }
 
+    @Step
     public DragAndDropSlidersPage goToDragAndDropPage(){
         this.advancedWizzardButton.click();
         this.dragAndDropSlidersItem.click();

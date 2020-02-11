@@ -1,5 +1,6 @@
 package pageobjects.alerts_and_modals_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,18 +23,21 @@ public class JavaScriptAlertsPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public JavaScriptAlertsPage alertBoxDialog(){
         this.clickMeJSAlertBoxButton.click();
 
         return new JavaScriptAlertsPage(driver);
     }
 
+    @Step
     public JavaScriptAlertsPage confirmBoxDialog(){
         this.clickMeJSConfirmBoxButton.click();
 
         return new JavaScriptAlertsPage(driver);
     }
 
+    @Step
     public JavaScriptAlertsPage promptBoxDialog(){
         this.clickForPromptBoxButton.click();
 

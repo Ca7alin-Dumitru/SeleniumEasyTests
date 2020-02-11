@@ -1,5 +1,6 @@
 package pageobjects.date_pickers_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public class JQueryDatePickerPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public JQueryDatePickerPage dateRangePicker(String from, String to){
         this.fromDateRangerPickerDropDown.sendKeys(from);
         this.toDateRangerPickerDropDown.sendKeys(to);

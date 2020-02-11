@@ -1,5 +1,6 @@
 package pageobjects.others_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -26,6 +27,7 @@ public class DragAndDropPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public DragAndDropPage dragAndDropItems(String [] items) throws Exception {
         for(String item : items){
             if(item.equalsIgnoreCase("drag1")){

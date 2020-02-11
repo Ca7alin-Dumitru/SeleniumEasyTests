@@ -1,5 +1,6 @@
 package pageobjects.input_forms_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,11 +30,13 @@ public class CheckboxDemoPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public CheckboxDemoPage singleCheckboxDemoSection(){
         this.clickOnThisCheckBox.click();
         return new CheckboxDemoPage(driver);
     }
 
+    @Step
     public CheckboxDemoPage multipleCheckboxDemoSection(int option){
         if(option == 1){
             this.option1CheckBox.click();

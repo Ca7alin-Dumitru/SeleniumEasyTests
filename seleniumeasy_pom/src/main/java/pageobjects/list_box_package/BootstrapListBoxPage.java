@@ -1,5 +1,6 @@
 package pageobjects.list_box_package;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,7 @@ public class BootstrapListBoxPage extends PageObject {
         super(driver);
     }
 
+    @Step
     public BootstrapListBoxPage moveItemsBetweenLeftAndRight(){
         this.selectAllLeftListButton.click();
         this.moveToRightTheLeftListButton.click();

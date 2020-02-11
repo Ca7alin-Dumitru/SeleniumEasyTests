@@ -1,5 +1,6 @@
 package pageobjects.common_elements.footer;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,6 +41,7 @@ public class FooterMenus extends PageObject {
         super(driver);
     }
 
+    @Step
     public void goToApachePoi(){
         this.apachePOITutorialsLink.click();
     }
