@@ -75,7 +75,7 @@
             <class name="layer.middle.SeleniumeasyTests">
                 <methods>
                     <exclude name="verifyDragAndDropPageTests" />
-                    <include name="verifyBootstrapAlertsPageTests" />
+                    <include name="verifyDynamicDataLoading" />
                 </methods>
             </class>
         </classes>
