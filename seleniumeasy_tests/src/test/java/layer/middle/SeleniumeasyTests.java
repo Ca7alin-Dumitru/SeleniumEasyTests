@@ -357,10 +357,10 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/bootstrap-alert-messages-demo.html");
         BootstrapAlertsPage bootstrapAlertsPage = new BootstrapAlertsPage(driver);
         bootstrapAlertsPage.alertMessages("success");
-        assertTrue(driver.findElement(By.cssSelector(".alert.alert-success.alert-autocloseable-success")).isDisplayed());
-        assertTrue(driver.findElement(By.cssSelector(".alert.alert-success.alert-normal-success")).isDisplayed());
-        wait = new WebDriverWait(driver, 6);
+        wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".alert.alert-success.alert-autocloseable-success")));
+        assertFalse(driver.findElement(By.cssSelector(".alert.alert-success.alert-autocloseable-success")).isDisplayed());
+        assertTrue(driver.findElement(By.cssSelector(".alert.alert-success.alert-normal-success")).isDisplayed());
     }
 
     @Test
