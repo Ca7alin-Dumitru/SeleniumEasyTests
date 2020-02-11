@@ -7,6 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -36,7 +37,9 @@ import pageobjects.table_package.TablePaginationPage;
 import pageobjects.table_package.TableSortAndSearchPage;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -60,8 +63,15 @@ public class SeleniumeasyTests {
         else if(browser.equalsIgnoreCase("chrome")){
             //set path to chromedriver.exe
             WebDriverManager.chromedriver().setup();
+            Map<String, Object> prefs = new HashMap<String, Object>();
+            // Use File.separator as it will work on any OS
+            prefs.put("download.default_directory",
+                    System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources");
+            // Adding cpabilities to ChromeOptions
+            ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("prefs", prefs);
             //create chrome instance
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         }
         //Check if parameter passed as 'Edge'
         else if(browser.equalsIgnoreCase("edge")){
@@ -257,14 +267,14 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/generate-file-to-download-demo.html");
         FileDownloadPage fileDownloadPage = new FileDownloadPage(driver);
         String actualResult = "";
+        String fileName = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "easyinfo.txt";
 
-
-        fileDownloadPage.fileDownload("This is a test for automation!", "C:\\Users\\gdumitru\\Downloads\\easyinfo.txt");
+        fileDownloadPage.fileDownload("This is a test for automation!", fileName);
         Thread.sleep(5000);
         try{
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
-                            new FileInputStream("C:\\Users\\gdumitru\\Downloads\\easyinfo.txt")
+                            new FileInputStream(fileName)
                     )
             );
 
