@@ -89,7 +89,7 @@
                 <version>2.20</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testsuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/middletestsuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                     <systemPropertyVariables>
