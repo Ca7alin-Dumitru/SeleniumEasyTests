@@ -51,7 +51,7 @@ public class BootstrapModalsPage extends PageObject {
         if(modalOption.equalsIgnoreCase("close")){
             this.launchMultipleModalButton.click();
             this.launchChildModalButton.click();
-            this.closeChildButton.click();
+            new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOf(closeChildButton)).click();
             this.launchChildModalButton.sendKeys(Keys.ESCAPE);
         }
 
