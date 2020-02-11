@@ -86,7 +86,7 @@ public class SeleniumeasyTests {
         }
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         //driver.get("https://www.seleniumeasy.com/test/");
     }
 
@@ -372,7 +372,7 @@ public class SeleniumeasyTests {
                 -44,
                 44,
                 -30,
-                100);
+                80);
         assertNotEquals("50",driver.findElement(By.id("rangeDanger")).getText());
     }
 
