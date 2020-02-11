@@ -37,7 +37,8 @@ public class BootstrapModalsPage extends PageObject {
     public BootstrapModalsPage singleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchSingleModalButton.click();
-            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeButton)).click();
+            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeButton));
+            new Actions(driver).click(closeButton).perform();
         }else{
             this.launchSingleModalButton.click();
             this.saveChangesButton.click();
