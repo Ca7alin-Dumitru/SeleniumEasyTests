@@ -3,6 +3,7 @@ package pageobjects.others_package;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pageobjects.PageObject;
 
@@ -17,7 +18,7 @@ public class DynamicDataLoadingPage extends PageObject {
 
     @Step
     public DynamicDataLoadingPage getNewUser(){
-        this.getNewUserButton.click();
+        new Actions(driver).click(getNewUserButton).perform();
 
         return new DynamicDataLoadingPage(driver);
     }
