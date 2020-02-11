@@ -578,9 +578,7 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
         //Single CheckBox Demo section tests
         CheckboxDemoPage checkboxDemoPage = new CheckboxDemoPage(driver);
-        //verify the 'click on this check box' is unchecked
-        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.id("txtAge")));
-        assertTrue(driver.findElement(By.id("txtAge")).getCssValue("display").equalsIgnoreCase("none"));
+
         checkboxDemoPage.singleCheckboxDemoSection();
         //verify the 'click on this check box' is checked, displayed and shows the correct message
         assertTrue(driver.findElement(By.id("txtAge")).getCssValue("display").equalsIgnoreCase("block"));
