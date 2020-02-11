@@ -349,7 +349,8 @@ public class SeleniumeasyTests {
     public void verifyBoostrapModalsPageTests() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/bootstrap-modal-demo.html");
         BootstrapModalsPage bootstrapModalsPage = new BootstrapModalsPage(driver);
-        bootstrapModalsPage.singleModalExampleSection("close").multipleModalExampleSection("close");
+        bootstrapModalsPage.singleModalExampleSection("close");
+        bootstrapModalsPage.multipleModalExampleSection("close");
     }
 
     @Test
