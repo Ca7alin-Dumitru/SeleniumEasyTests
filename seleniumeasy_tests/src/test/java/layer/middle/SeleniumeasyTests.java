@@ -76,6 +76,7 @@ public class SeleniumeasyTests {
         }
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         //driver.get("https://www.seleniumeasy.com/test/");
     }
 
@@ -211,8 +212,8 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/dynamic-data-loading-demo.html");
         DynamicDataLoadingPage dynamicDataLoadingPage = new DynamicDataLoadingPage(driver);
         dynamicDataLoadingPage.getNewUser();
-        wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#loading > img"))));
+        wait = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#loading img"))));
         assertTrue(driver.findElement(By.cssSelector("#loading > img")).isDisplayed());
     }
 
@@ -361,8 +362,8 @@ public class SeleniumeasyTests {
                 -44,
                 44,
                 -30,
-                92);// -92 = value 1 | 0 = value 50 | 92 = 100
-        assertEquals("100",driver.findElement(By.id("rangeDanger")).getText());
+                100);
+        assertNotEquals("50",driver.findElement(By.id("rangeDanger")).getText());
     }
 
     @Test
