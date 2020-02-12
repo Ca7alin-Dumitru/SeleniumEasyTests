@@ -1,6 +1,7 @@
 package pageobjects.alerts_and_modals_package;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,8 +38,9 @@ public class BootstrapModalsPage extends PageObject {
     public BootstrapModalsPage singleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchSingleModalButton.click();
-            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeButton));
-            new Actions(driver).click(closeButton).perform();
+            WebElement modal = new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal0']/div/div")));
+            //new Actions(driver).click(closeButton).perform();
+            modal.findElement(By.xpath("//div[@id='myModal0']//a[@class='btn btn-primary'][contains(text(),'Save changes')]")).click();
         }else{
             this.launchSingleModalButton.click();
             this.saveChangesButton.click();
@@ -51,10 +53,14 @@ public class BootstrapModalsPage extends PageObject {
     public BootstrapModalsPage multipleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
             this.launchMultipleModalButton.click();
-            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(launchChildModalButton));
+            WebElement modal = new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal']/div/div")));
+            modal.findElement(By.xpath("//div[@class='modal-body']//a[@class='btn btn-primary'][contains(text(),'Launch modal')]")).click();
+            WebElement modalChild = new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal2']/div/div")));
+            modalChild.findElement(By.xpath("//div[@id='myModal2']//a[@class='btn'][contains(text(),'Close')]")).click();
+            /*new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(launchChildModalButton));
             new Actions(driver).click(launchChildModalButton).perform();
             new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeChildButton));
-            new Actions(driver).click(closeChildButton).perform();
+            new Actions(driver).click(closeChildButton).perform();*/
             this.launchChildModalButton.sendKeys(Keys.ESCAPE);
         }
 
