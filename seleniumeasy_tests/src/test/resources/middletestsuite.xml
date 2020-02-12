@@ -75,6 +75,7 @@
             <class name="layer.middle.SeleniumeasyTests">
                 <methods>
                     <exclude name="verifyDragAndDropPageTests" />
+                    <include name="verifyBoostrapModalsPageTests" />
                 </methods>
             </class>
         </classes>
