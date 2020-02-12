@@ -520,6 +520,7 @@ public class SeleniumeasyTests {
         assertTrue(driver.findElement(By.id("btn-submit")).isDisplayed());
         ajaxFormSubmitPage.inputFormWithLoadingIcon("test","Say hello for my test!");
         assertTrue(driver.findElement(By.id("submit-control")).isDisplayed());
+        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Ajax Request is Processing!"));
         assertEquals("Ajax Request is Processing!",driver.findElement(By.id("submit-control")).getText());
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Form submited Successfully!"));
         assertEquals("Form submited Successfully!",driver.findElement(By.id("submit-control")).getText());
