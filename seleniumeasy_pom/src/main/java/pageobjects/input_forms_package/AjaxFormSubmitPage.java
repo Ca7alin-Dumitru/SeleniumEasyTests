@@ -25,7 +25,6 @@ public class AjaxFormSubmitPage extends PageObject {
         this.nameField.sendKeys(name);
         this.commentAreaField.sendKeys(comment);
         this.submitButton.click();
-        this.waitForElementToAppear(By.id("submit-control"));
 
         return new AjaxFormSubmitPage(driver);
     }

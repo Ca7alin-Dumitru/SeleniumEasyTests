@@ -35,32 +35,40 @@ public class BootstrapModalsPage extends PageObject {
     }
 
     @Step
+    public BootstrapModalsPage singleModalExampleSection(){
+        this.launchSingleModalButton.click();
+
+        return new BootstrapModalsPage(driver);
+    }
+
+    @Step
     public BootstrapModalsPage singleModalExampleSection(String modalOption){
         if(modalOption.equalsIgnoreCase("close")){
-            this.launchSingleModalButton.click();
-            WebElement modal = new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal0']/div/div")));
-            //new Actions(driver).click(closeButton).perform();
-            modal.findElement(By.xpath("//div[@id='myModal0']//a[@class='btn btn-primary'][contains(text(),'Save changes')]")).click();
-        }else{
-            this.launchSingleModalButton.click();
-            this.saveChangesButton.click();
+            WebElement modal = driver.findElement(By.xpath("//*[@id='myModal0']/div/div"));
+            new Actions(driver).click(modal.findElement(By.xpath("//div[@id='myModal0']//a[@class='btn btn-primary'][contains(text(),'Save changes')]"))).perform();
         }
 
         return new BootstrapModalsPage(driver);
     }
 
     @Step
+    public BootstrapModalsPage multipleModalExampleSection(){
+        this.launchMultipleModalButton.click();
+
+        return new BootstrapModalsPage(driver);
+    }
+
+    @Step
     public BootstrapModalsPage multipleModalExampleSection(String modalOption){
-        if(modalOption.equalsIgnoreCase("close")){
-            this.launchMultipleModalButton.click();
-            WebElement modal = new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal']/div/div")));
-            modal.findElement(By.xpath("//div[@class='modal-body']//a[@class='btn btn-primary'][contains(text(),'Launch modal')]")).click();
-            WebElement modalChild = new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal2']/div/div")));
+        if(modalOption.equalsIgnoreCase("child")){
+            WebElement modal = driver.findElement(By.xpath("//*[@id='myModal']/div/div"));
+            new Actions(driver).click(modal.findElement(By.xpath("//div[@class='modal-body']//a[@class='btn btn-primary'][contains(text(),'Launch modal')]"))).perform();
+
+            WebElement modalChild = driver.findElement(By.xpath("//*[@id='myModal']/div/div"));
+            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='myModal2']/div/div")));
+            new Actions(driver).click(modalChild.findElement(By.xpath("//div[@id='myModal2']//a[@class='btn'][contains(text(),'Close')]"))).perform();
             modalChild.findElement(By.xpath("//div[@id='myModal2']//a[@class='btn'][contains(text(),'Close')]")).click();
-            /*new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(launchChildModalButton));
-            new Actions(driver).click(launchChildModalButton).perform();
-            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOf(closeChildButton));
-            new Actions(driver).click(closeChildButton).perform();*/
+
             this.launchChildModalButton.sendKeys(Keys.ESCAPE);
         }
 
