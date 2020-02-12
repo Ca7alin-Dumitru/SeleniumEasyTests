@@ -242,7 +242,7 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/dynamic-data-loading-demo.html");
         DynamicDataLoadingPage dynamicDataLoadingPage = new DynamicDataLoadingPage(driver);
         dynamicDataLoadingPage.getNewUser();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#loading img"))));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#loading > img"))));
         assertTrue(driver.findElement(By.cssSelector("#loading > img")).isDisplayed());
     }
 
