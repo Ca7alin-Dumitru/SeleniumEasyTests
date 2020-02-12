@@ -7,22 +7,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class Utility {
-    public static void captureScreenshot(WebDriver driver,String screenshotName)
-    {
-
-        try
-        {
+    public static void captureScreenshot(WebDriver driver,String screenshotName) {
+        try {
             TakesScreenshot ts=(TakesScreenshot)driver;
-
             File source=ts.getScreenshotAs(OutputType.FILE);
-
             FileUtils.copyFile(source, new File("./Screenshots/"+screenshotName+".png"));
-
             System.out.println("Screenshot taken for " + screenshotName + " . Please, take a look on the Screenshots folder!");
-        }
-        catch (Exception e)
-        {
-
+        } catch (Exception e) {
             System.out.println("Exception while taking screenshot "+e.getMessage());
         }
     }
