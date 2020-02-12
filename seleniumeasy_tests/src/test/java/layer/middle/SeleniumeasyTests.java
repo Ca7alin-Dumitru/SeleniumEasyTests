@@ -640,7 +640,7 @@ public class SeleniumeasyTests {
         int a = Integer.parseInt(valueA);
         int b = Integer.parseInt(valueB);
         assertEquals(message,driver.findElement(By.cssSelector("#display")).getText());
-        assertEquals(Integer.toString(a + b +1),driver.findElement(By.cssSelector("#displayvalue")).getText());
+        assertEquals(Integer.toString(a + b),driver.findElement(By.cssSelector("#displayvalue")).getText());
     }
 
     @AfterMethod
