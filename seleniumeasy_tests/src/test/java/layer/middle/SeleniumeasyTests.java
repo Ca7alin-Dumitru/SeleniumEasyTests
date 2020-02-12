@@ -645,7 +645,7 @@ public class SeleniumeasyTests {
 
     @AfterMethod
     public void tearDown(ITestResult result){
-        if(ITestResult.FAILURE == result.getStatus()){
+        if(ITestResult.SUCCESS != result.getStatus()){
             try{
                 Utility.captureScreenshot(driver,result.getName());
             }catch (Exception e) {
