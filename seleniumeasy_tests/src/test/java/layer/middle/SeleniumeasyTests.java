@@ -657,11 +657,12 @@ public class SeleniumeasyTests {
         assertEquals(Integer.toString(a + b),driver.findElement(By.cssSelector("#displayvalue")).getText());
     }
 
+    @Parameters({"browserName"})
     @AfterMethod
-    public void tearDown(ITestResult result){
+    public void tearDown(ITestResult result, String browser){
         if(ITestResult.SUCCESS != result.getStatus()){
             try{
-                Utility.captureScreenshot(driver,result.getName());
+                Utility.captureScreenshot(driver,browser + "_" + result.getName());
             }catch (Exception e) {
                 System.out.println("Exception while taking screenshot "+e.getMessage());
             }
