@@ -3,6 +3,7 @@ package layer.middle;
 import data.generator.Address;
 import data.generator.Name;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import library.Utility;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pageobjects.DemoHomePage;
 import pageobjects.alerts_and_modals_package.*;
@@ -638,11 +640,18 @@ public class SeleniumeasyTests {
         int a = Integer.parseInt(valueA);
         int b = Integer.parseInt(valueB);
         assertEquals(message,driver.findElement(By.cssSelector("#display")).getText());
-        assertEquals(Integer.toString(a + b),driver.findElement(By.cssSelector("#displayvalue")).getText());
+        assertEquals(Integer.toString(a + b +1),driver.findElement(By.cssSelector("#displayvalue")).getText());
     }
 
     @AfterMethod
-    public void tearDown(){
+    public void tearDown(ITestResult result){
+        if(ITestResult.FAILURE == result.getStatus()){
+            try{
+                Utility.captureScreenshot(driver,result.getName());
+            }catch (Exception e) {
+                System.out.println("Exception while taking screenshot "+e.getMessage());
+            }
+        }
         driver.close();
     }
 }
