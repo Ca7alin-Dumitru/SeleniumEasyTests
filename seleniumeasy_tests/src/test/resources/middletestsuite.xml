@@ -85,7 +85,11 @@
         <parameter name="browserName" value="firefox"/>
 
         <classes>
-            <class name="layer.middle.SeleniumeasyTests" />
+            <class name="layer.middle.SeleniumeasyTests">
+                <methods>
+                    <exclude name="verifyDragAndDropPageTests" />
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

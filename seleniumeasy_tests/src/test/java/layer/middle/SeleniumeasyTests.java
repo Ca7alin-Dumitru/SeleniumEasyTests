@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -58,8 +60,22 @@ public class SeleniumeasyTests {
         if(browser.equalsIgnoreCase("firefox")){
             //set path to firefoxdriver.exe
             WebDriverManager.firefoxdriver().setup();
-            //create firefox instance
-            driver = new FirefoxDriver();
+            // Creating firefox profile
+            FirefoxProfile profile = new FirefoxProfile();
+            // Instructing firefox to use custom download location
+            profile.setPreference("browser.download.folderList", 2);
+            // Setting custom download directory
+            profile.setPreference("browser.download.dir", System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources");
+            // Skipping Save As dialog box for types of files with their MIME
+            profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
+                    "text/csv, application/java-archive, application/x-msexcel, application/excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, " +
+                            "application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml," +
+                            "application/vnd.microsoft.portable-executable");
+            // Creating FirefoxOptions to set profile
+            FirefoxOptions options = new FirefoxOptions();
+            options.setProfile(profile);
+            // Launching browser with desired capabilities
+            driver = new FirefoxDriver(options);
         }
         //Check if parameter passed as 'chrome'
         else if(browser.equalsIgnoreCase("chrome")){
@@ -74,7 +90,6 @@ public class SeleniumeasyTests {
             options.setExperimentalOption("prefs", prefs);
             //create chrome instance
             driver = new ChromeDriver(options);
-            wait = new WebDriverWait(driver, 60);
         }
         //Check if parameter passed as 'Edge'
         else if(browser.equalsIgnoreCase("edge")){
@@ -88,6 +103,7 @@ public class SeleniumeasyTests {
             throw new Exception("Browser is not correct");
         }
 
+        wait = new WebDriverWait(driver, 60);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //driver.manage().window().maximize();
         //driver.get("https://www.seleniumeasy.com/test/");
