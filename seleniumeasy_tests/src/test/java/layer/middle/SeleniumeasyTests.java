@@ -74,6 +74,7 @@ public class SeleniumeasyTests {
             options.setExperimentalOption("prefs", prefs);
             //create chrome instance
             driver = new ChromeDriver(options);
+            wait = new WebDriverWait(driver, 60);
         }
         //Check if parameter passed as 'Edge'
         else if(browser.equalsIgnoreCase("edge")){
@@ -103,8 +104,9 @@ public class SeleniumeasyTests {
 
         ajaxFormSubmitPage.inputFormWithLoadingIcon(name,comment);
         assertTrue(driver.findElement(By.id("submit-control")).isDisplayed());
+        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Ajax Request is Processing!"));
         assertEquals("Ajax Request is Processing!",driver.findElement(By.id("submit-control")).getText());
-        new WebDriverWait(driver, 20).until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Form submited Successfully!"));
+        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Form submited Successfully!"));
         assertEquals("Form submited Successfully!",driver.findElement(By.id("submit-control")).getText());
     }
 
@@ -224,7 +226,6 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/dynamic-data-loading-demo.html");
         DynamicDataLoadingPage dynamicDataLoadingPage = new DynamicDataLoadingPage(driver);
         dynamicDataLoadingPage.getNewUser();
-        wait = new WebDriverWait(driver, 60);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("#loading img"))));
         assertTrue(driver.findElement(By.cssSelector("#loading > img")).isDisplayed());
     }
@@ -242,7 +243,6 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/data-list-filter-demo.html");
         DataListFilterPage dataListFilterPage = new DataListFilterPage(driver);
         dataListFilterPage.searchAttendees("test3");
-        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//span[text() = 'Email: test1@company.com']"))));
         assertTrue(driver.findElement(By.xpath("//span[text() = 'Email: test3@company.com']")).isDisplayed());
 
@@ -323,7 +323,6 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/bootstrap-progress-bar-dialog-demo.html");
         ProgressBarModalPage progressBarModalPage = new ProgressBarModalPage(driver);
         progressBarModalPage.showSimpleDialog();
-        wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("body > div.modal.fade > div > div")));
 
     }
@@ -360,7 +359,6 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/bootstrap-alert-messages-demo.html");
         BootstrapAlertsPage bootstrapAlertsPage = new BootstrapAlertsPage(driver);
         bootstrapAlertsPage.alertMessages("success");
-        wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".alert.alert-success.alert-autocloseable-success")));
         assertFalse(driver.findElement(By.cssSelector(".alert.alert-success.alert-autocloseable-success")).isDisplayed());
         assertTrue(driver.findElement(By.cssSelector(".alert.alert-success.alert-normal-success")).isDisplayed());
@@ -383,7 +381,6 @@ public class SeleniumeasyTests {
     public void verifyBootstrapProgressBarPageTests() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/bootstrap-download-progress-demo.html");
         BootStrapProgressBarPage bootStrapProgressBarPage = new BootStrapProgressBarPage(driver);
-        wait = new WebDriverWait(driver, 60);
         assertTrue(driver.findElement(By.id("cricle-btn")).isDisplayed());
         assertEquals("0%",driver.findElement(By.className("percenttext")).getText());
         bootStrapProgressBarPage.progressBarForDownloadCheck();
@@ -394,7 +391,6 @@ public class SeleniumeasyTests {
     public void verifyJQueryDownloadProgressBarsPageTests() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/jquery-download-progress-bar-demo.html");
         JQueryDownloadProgressBarsPage jQueryDownloadProgressBarsPage = new JQueryDownloadProgressBarsPage(driver);
-        wait = new WebDriverWait(driver, 30);
         jQueryDownloadProgressBarsPage.startDownloadProcess();
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.className("progress-label")), "Complete!"));
         assertTrue(driver.findElement(By.className("progress-label")).isDisplayed());
@@ -436,7 +432,6 @@ public class SeleniumeasyTests {
     @Test
     public void verifyTableDataSearchPageTests() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/table-search-filter-demo.html");
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         TableDataSearchPage tableDataSearchPage = new TableDataSearchPage(driver);
         tableDataSearchPage.tasksSection("in progress").listedUsersSection("2");
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.xpath("//td[text() = 'in progress']")), "in progress"));
@@ -510,7 +505,7 @@ public class SeleniumeasyTests {
         ajaxFormSubmitPage.inputFormWithLoadingIcon("test","Say hello for my test!");
         assertTrue(driver.findElement(By.id("submit-control")).isDisplayed());
         assertEquals("Ajax Request is Processing!",driver.findElement(By.id("submit-control")).getText());
-        new WebDriverWait(driver, 20).until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Form submited Successfully!"));
+        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Form submited Successfully!"));
         assertEquals("Form submited Successfully!",driver.findElement(By.id("submit-control")).getText());
     }
 
