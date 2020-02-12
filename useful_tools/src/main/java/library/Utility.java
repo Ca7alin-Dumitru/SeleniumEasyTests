@@ -18,7 +18,7 @@ public class Utility {
 
             FileUtils.copyFile(source, new File("./Screenshots/"+screenshotName+".png"));
 
-            System.out.println("Screenshot taken");
+            System.out.println("Screenshot taken for " + screenshotName + " . Please, take a look on the Screenshots folder!");
         }
         catch (Exception e)
         {
