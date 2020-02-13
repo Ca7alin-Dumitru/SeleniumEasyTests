@@ -1,9 +1,11 @@
 package pageobjects.input_forms_package;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import pageobjects.PageObject;
 
 public class SelectDropdownListPage extends PageObject {
@@ -26,8 +28,8 @@ public class SelectDropdownListPage extends PageObject {
     private WebElement saturday;
 
     //these webelements are for Multi Select List Demo section
-    /*@FindBy(css = "#multi-select")
-    private WebElement multiValuesSelectionBox;*/
+    @FindBy(css = "#multi-select")
+    private WebElement multiValuesSelectionBox;
     @FindBy(xpath = "//option[@value='California']")
     private WebElement california;
     @FindBy(xpath = "//option[@value='Florida']")
@@ -76,30 +78,40 @@ public class SelectDropdownListPage extends PageObject {
 
     @Step
     public SelectDropdownListPage multiSelectListDemoSection(String [] states){
+        Select stat = new Select(multiValuesSelectionBox);
         for (String state : states){
             if(state.equalsIgnoreCase("california")){
-                this.california.click();
+                stat.selectByVisibleText("California");
+                //((JavascriptExecutor)driver).executeScript("arguments[0].click();", this.california);
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='California']\"); element.click()");
             }
             if(state.equalsIgnoreCase("florida")){
-                this.florida.click();
+                stat.selectByVisibleText("Florida");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='Florida']\"); element.click()");
             }
             if(state.equalsIgnoreCase("new jersey")){
-                this.newJersey.click();
+                stat.selectByVisibleText("New Jersey");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='New Jersey']\"); element.click()");
             }
             if(state.equalsIgnoreCase("new york")){
-                this.newYork.click();
+                stat.selectByVisibleText("New York");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='New York']\"); element.click()");
             }
             if(state.equalsIgnoreCase("ohio")){
-                this.ohio.click();
+                stat.selectByVisibleText("Ohio");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='Ohio']\"); element.click()");
             }
             if(state.equalsIgnoreCase("texas")){
-                this.texas.click();
+                stat.selectByVisibleText("Texas");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='Texas']\"); element.click()");
             }
             if(state.equalsIgnoreCase("pennsylvania")){
-                this.pennsylvania.click();
+                stat.selectByVisibleText("Pennsylvania");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='Pennsylvania']\"); element.click()");
             }
             if(state.equalsIgnoreCase("washington")){
-                this.washington.click();
+                stat.selectByVisibleText("Washington");
+                ((JavascriptExecutor) driver).executeScript("element = document.querySelector(\"option[value='Washington']\"); element.click()");//without this line in mozilla doesn't work
             }
 
             this.firstSelectedButton.click();
