@@ -54,4 +54,11 @@ public class DragAndDropPage extends PageObject {
 
         return new DragAndDropPage(driver);
     }
+    /* it is not finished
+    @Step
+    public DragAndDropPage dragAndDropItems() throws Exception {
+        this.dragDrop(driver,draggableFirstTextBox,dropHereZone);
+
+        return new DragAndDropPage(driver);
+    }*/
 }
