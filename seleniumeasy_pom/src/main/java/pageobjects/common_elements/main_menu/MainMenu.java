@@ -50,7 +50,9 @@ public class MainMenu extends PageObject {
     @Step
     public ChartsDemoPage goToChartsDemoPage(){
         this.othersDropDownToggleButton.click();
-        new Actions(driver).click(chartsDemoSubMenu).perform();
+        this.waitForElementToBeClickable(chartsDemoSubMenu);
+        this.chartsDemoSubMenu.click();
+        //new Actions(driver).click(chartsDemoSubMenu).perform();
 
         return new ChartsDemoPage(driver);
     }

@@ -80,7 +80,7 @@
         </classes>
     </test>
 
-    <test name="positive test firefox" enabled="false">
+    <test name="positive test firefox" enabled="true">
 
         <parameter name="browserName" value="firefox"/>
 

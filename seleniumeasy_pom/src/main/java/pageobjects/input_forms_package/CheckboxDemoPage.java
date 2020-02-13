@@ -2,6 +2,7 @@ package pageobjects.input_forms_package;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -47,8 +48,10 @@ public class CheckboxDemoPage extends PageObject {
         } else if(option == 4){
             this.option4CheckBox.click();
         } else if(option == 5){
-            //this.checkAllButton.click();
-            new Actions(driver).click(checkAllButton).perform();
+            /*this.waitForElementToBeClickable(this.checkAllButton);
+            this.checkAllButton.click();*/
+            //new Actions(driver).click(checkAllButton).perform();
+            ((JavascriptExecutor)driver).executeScript("arguments[0].click();", checkAllButton);
         } else {
             System.out.println("The chosen option is not in range from 1 to 6!");
             System.out.println("From 1 to 4 are the Option 1 to the Option 4 checkboxes!");

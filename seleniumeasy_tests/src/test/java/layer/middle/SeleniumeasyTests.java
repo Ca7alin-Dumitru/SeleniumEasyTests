@@ -622,8 +622,10 @@ public class SeleniumeasyTests {
                 multipleCheckboxDemoSection(2).
                 multipleCheckboxDemoSection(3).
                 multipleCheckboxDemoSection(4);
+        wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("check1")),"value","Uncheck All"));
         assertTrue(driver.findElement(By.id("check1")).getAttribute("value").contains("Uncheck All"));
         checkboxDemoPage.multipleCheckboxDemoSection(5);
+        wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("check1")),"value","Check All"));
         assertTrue(driver.findElement(By.id("check1")).getAttribute("value").contains("Check All"));
         checkboxDemoPage.multipleCheckboxDemoSection(5);
         assertTrue(driver.findElement(By.cssSelector("#easycont > div > div.col-md-6.text-left > div:nth-child(5) > div.panel-body > div:nth-child(3) > label > input")).isSelected());
