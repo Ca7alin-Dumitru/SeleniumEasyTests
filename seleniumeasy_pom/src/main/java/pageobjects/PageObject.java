@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageObject {
-    private static final int TIMEOUT = 10;
+    private static final int TIMEOUT = 60;
     private static final int POLLING = 10000;
 
     protected final WebDriver driver;
@@ -16,7 +16,7 @@ public class PageObject {
 
     public PageObject(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(this.driver, TIMEOUT, POLLING);
+        wait = new WebDriverWait(this.driver, TIMEOUT);
         PageFactory.initElements(this.driver, this);
     }
 
