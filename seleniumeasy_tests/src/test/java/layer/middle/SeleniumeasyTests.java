@@ -672,6 +672,6 @@ public class SeleniumeasyTests {
                 System.out.println("Exception while taking screenshot "+e.getMessage());
             }
         }
-        //driver.close();
+        driver.close();
     }
 }
