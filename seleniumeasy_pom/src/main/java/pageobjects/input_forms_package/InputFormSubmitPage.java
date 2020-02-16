@@ -3,8 +3,8 @@ package pageobjects.input_forms_package;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import pageobjects.PageObject;
 
 public class InputFormSubmitPage extends PageObject {
@@ -52,14 +52,14 @@ public class InputFormSubmitPage extends PageObject {
                                                   String websiteOrDomainName,
                                                   String hosting,
                                                   String projectDescription){
+        Select stat = new Select(stateDropDown);
         this.firstNameField.sendKeys(firstName);
         this.lastNameField.sendKeys(lastName);
         this.eMailField.sendKeys(eMail);
         this.phoneField.sendKeys(phone);
         this.addressField.sendKeys(address);
         this.cityField.sendKeys(city);
-        new Actions(driver).click(stateDropDown).perform();
-        this.stateDropDown.sendKeys(state);
+        stat.selectByVisibleText(state);
         this.zipCodeField.sendKeys(zipCode);
         this.websiteOrDomianNameField.sendKeys(websiteOrDomainName);
         if(hosting.equalsIgnoreCase("yes")){
