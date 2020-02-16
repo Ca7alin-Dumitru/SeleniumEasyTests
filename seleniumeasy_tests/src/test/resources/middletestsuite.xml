@@ -74,13 +74,13 @@
         <classes>
             <class name="layer.middle.SeleniumeasyTests">
                 <methods>
-                    <include name="verifyDragAndDropPageTests" />
+                    <exclude name="verifyDragAndDropPageTests" />
                 </methods>
             </class>
         </classes>
     </test>
 
-    <test name="positive test firefox" enabled="false">
+    <test name="positive test firefox" enabled="true">
 
         <parameter name="browserName" value="firefox"/>
 

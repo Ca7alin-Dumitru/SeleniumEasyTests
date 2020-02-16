@@ -1,10 +1,8 @@
 package pageobjects.others_package;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pageobjects.PageObject;
@@ -34,20 +32,14 @@ public class DragAndDropPage extends PageObject {
     public DragAndDropPage dragAndDropItems(String [] items) throws Exception {
         for(String item : items){
             if(item.equalsIgnoreCase("drag1")){
-                /*Robot bot = new Robot();
-                bot.mouseMove(draggableFirstTextBox.getLocation().getX(), draggableFirstTextBox.getLocation().getY()+300);
-                bot.mouseMove(dropHereZone.getLocation().getX()+200, dropHereZone.getLocation().getY()+300);*/
-
                 /*(new Actions(driver)).dragAndDrop(draggableFirstTextBox, dropHereZone).perform();*/
                 /*Actions action = new Actions(driver);
-                action.clickAndHold(draggableFirstTextBox).moveToElement(dropHereZone).release().build().perform();*/
+                action.clickAndHold(draggableFirstTextBox).moveToElement(dropHereZone).release(dropHereZone).build().perform();*/
                 //new Actions(driver).dragAndDrop(draggableFirstTextBox, dropHereZone).build().perform();
-                System.out.println(draggableFirstTextBox.getLocation());
-                System.out.println(dropHereZone.getLocation());
-                System.out.println(driver.manage().window().getSize());
-                Dimension d = new Dimension(1004,748);
-                System.out.println(driver.manage().window().getSize());
-                driver.manage().window().setSize(d);
+                /*new Actions(driver).moveToElement(draggableFirstTextBox).build().perform();
+                new Actions(driver).clickAndHold(draggableFirstTextBox).build().perform();
+                new Actions(driver).moveToElement(dropHereZone).build().perform();*/
+                driver.manage().window().setSize(new Dimension(1004,748));
                 Robot robot = new Robot();
                 new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
                 robot.delay(1500);
