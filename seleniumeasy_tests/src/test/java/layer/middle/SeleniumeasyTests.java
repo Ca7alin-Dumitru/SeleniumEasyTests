@@ -542,7 +542,7 @@ public class SeleniumeasyTests {
                         "(845)111-999",
                         "Street Hello, No. 1",
                         "My City",
-                        "new mexico",
+                        "New Mexico",
                         "99999",
                         "www.automation.com",
                         "no",
