@@ -38,7 +38,17 @@ public class DragAndDropPage extends PageObject {
                 /*(new Actions(driver)).dragAndDrop(draggableFirstTextBox, dropHereZone).perform();*/
                 /*Actions action = new Actions(driver);
                 action.clickAndHold(draggableFirstTextBox).moveToElement(dropHereZone).release().build().perform();*/
-                new Actions(driver).dragAndDrop(draggableFirstTextBox, dropHereZone).build().perform();
+                //new Actions(driver).dragAndDrop(draggableFirstTextBox, dropHereZone).build().perform();
+                System.out.println(draggableFirstTextBox.getLocation());
+                System.out.println(dropHereZone.getLocation());
+                System.out.println(driver.manage().window().getSize());
+                Robot robot = new Robot();
+                robot.mouseMove(350,640);
+                robot.delay(1500);
+                robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                robot.mouseMove(450,640);
+                robot.delay(1500);
+                robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                 /*System.out.println(draggableFirstTextBox.getLocation().getX() + " " + draggableFirstTextBox.getLocation().getY());
                 System.out.println(draggableFirstTextBox.getSize().height + " " + draggableFirstTextBox.getSize().width);
                 System.out.println(dropHereZone.getLocation().getX() + " " + dropHereZone.getLocation().getY());
