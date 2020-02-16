@@ -2,6 +2,7 @@ package pageobjects.others_package;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -48,7 +49,7 @@ public class DragAndDropPage extends PageObject {
                 System.out.println(driver.manage().window().getSize());
                 driver.manage().window().setSize(d);
                 Robot robot = new Robot();
-                robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+                new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
                 robot.delay(1500);
                 robot.mouseMove(150,440);
                 robot.delay(1500);
