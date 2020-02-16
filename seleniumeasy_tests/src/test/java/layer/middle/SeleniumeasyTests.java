@@ -90,6 +90,7 @@ public class SeleniumeasyTests {
             // Adding cpabilities to ChromeOptions
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("prefs", prefs);
+            options.addArguments("window-size=1050, 708");
             //create chrome instance
             driver = new ChromeDriver(options);
         }
@@ -252,15 +253,8 @@ public class SeleniumeasyTests {
     public void verifyDragAndDropPageTests() throws Exception{
         driver.get("https://www.seleniumeasy.com/test/drag-and-drop-demo.html");
         DragAndDropPage dragAndDropPage = new DragAndDropPage(driver);
-        /*String [] items = {"drag1"};
-        dragAndDropPage.dragAndDropItems(items);*/
-        Robot robot = new Robot();
-        robot.mouseMove(350,640);
-        robot.delay(1500);
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseMove(450,640);
-        robot.delay(1500);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        String [] items = {"drag1"};
+        dragAndDropPage.dragAndDropItems(items);
         assertTrue(driver.findElement(By.cssSelector("#droppedlist > span")).isDisplayed());
     }
 
