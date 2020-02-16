@@ -40,6 +40,8 @@ import pageobjects.table_package.TableFilterPage;
 import pageobjects.table_package.TablePaginationPage;
 import pageobjects.table_package.TableSortAndSearchPage;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -250,8 +252,16 @@ public class SeleniumeasyTests {
     public void verifyDragAndDropPageTests() throws Exception{
         driver.get("https://www.seleniumeasy.com/test/drag-and-drop-demo.html");
         DragAndDropPage dragAndDropPage = new DragAndDropPage(driver);
-        String [] items = {"drag1"};
-        dragAndDropPage.dragAndDropItems(items);
+        /*String [] items = {"drag1"};
+        dragAndDropPage.dragAndDropItems(items);*/
+        Robot robot = new Robot();
+        robot.mouseMove(350,640);
+        robot.delay(1500);
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseMove(450,640);
+        robot.delay(1500);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        assertTrue(driver.findElement(By.cssSelector("#droppedlist > span")).isDisplayed());
     }
 
     @Test
@@ -669,6 +679,6 @@ public class SeleniumeasyTests {
                 System.out.println("Exception while taking screenshot "+e.getMessage());
             }
         }
-        driver.close();
+        //driver.close();
     }
 }
