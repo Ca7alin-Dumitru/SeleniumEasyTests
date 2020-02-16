@@ -90,7 +90,6 @@ public class SeleniumeasyTests {
             // Adding cpabilities to ChromeOptions
             ChromeOptions options = new ChromeOptions();
             options.setExperimentalOption("prefs", prefs);
-            options.addArguments("window-size=1050, 708");
             //create chrome instance
             driver = new ChromeDriver(options);
         }
