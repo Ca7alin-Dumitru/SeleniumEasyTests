@@ -43,10 +43,10 @@ public class DragAndDropPage extends PageObject {
                 Robot robot = new Robot();
                 new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
                 robot.delay(1500);
-                robot.mouseMove(150,440);
+                robot.mouseMove(150,440); //at work 850, 680 it is needed
                 robot.delay(1500);
                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-                robot.mouseMove(450,440);
+                robot.mouseMove(450,440); // at work 600, 500 it is needed
                 robot.delay(1500);
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                 /*System.out.println(draggableFirstTextBox.getLocation().getX() + " " + draggableFirstTextBox.getLocation().getY());
