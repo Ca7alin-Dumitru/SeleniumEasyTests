@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.annotations.Optional;
 import pageobjects.DemoHomePage;
 import pageobjects.alerts_and_modals_package.*;
 import pageobjects.common_elements.footer.FooterMenus;
@@ -40,13 +41,9 @@ import pageobjects.table_package.TableFilterPage;
 import pageobjects.table_package.TablePaginationPage;
 import pageobjects.table_package.TableSortAndSearchPage;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
@@ -667,7 +664,9 @@ public class SeleniumeasyTests {
     public void tearDown(ITestResult result, String browser){
         if(ITestResult.SUCCESS != result.getStatus()){
             try{
-                Utility.captureScreenshot(driver,browser + "_" + result.getName());
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy_HHmmss");
+                Utility.captureScreenshot(driver,browser + "_" + formatter.format(calendar.getTime()) + "_" + result.getName());
             }catch (Exception e) {
                 System.out.println("Exception while taking screenshot "+e.getMessage());
             }
