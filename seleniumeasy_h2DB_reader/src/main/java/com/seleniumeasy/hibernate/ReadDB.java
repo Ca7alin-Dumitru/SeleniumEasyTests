@@ -8,19 +8,18 @@ import org.testng.annotations.DataProvider;
 
 import java.util.List;
 
-public class GetACustomer {
+public class ReadDB {
     @Step
     @DataProvider(name="formValuesWithDataBase")
     public Object[][] getACustomer(){
         Transaction transaction = null;
-        CreateACustomer noCustomers = new CreateACustomer();
-        noCustomers.createACustomer(20);
+        CreateDB createCustomers = new CreateDB();
+        createCustomers.createACustomer(1);
         String [][] customer;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             List<Customer> customers = session.createQuery("FROM Customer", Customer.class).list();
-            //customers.forEach(c -> System.out.println(c.getFirstName()));
             customer = new String[customers.size()][11];
             int i = 0;
             for(Customer c : customers){
@@ -36,7 +35,6 @@ public class GetACustomer {
                 customer[i][9] = c.getHosting();
                 customer[i][10] = c.getProjectDescription();
                 i++;
-                //System.out.println(c.getAddress());
             }
             return customer;
         } catch (Exception e) {

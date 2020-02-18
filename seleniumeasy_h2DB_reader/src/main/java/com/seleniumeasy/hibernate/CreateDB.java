@@ -7,7 +7,7 @@ import data.generator.*;
 import com.seleniumeasy.hibernate.entity.Customer;
 import com.seleniumeasy.hibernate.util.HibernateUtil;
 
-public class CreateACustomer {
+public class CreateDB {
 
     public void createACustomer(int customers){
         Transaction transaction = null;
@@ -26,7 +26,7 @@ public class CreateACustomer {
             try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 // start a transaction
                 transaction = session.beginTransaction();
-                // save the student objects
+                // save the customer objects
                 session.save(customer);
                 // commit transaction
                 transaction.commit();
