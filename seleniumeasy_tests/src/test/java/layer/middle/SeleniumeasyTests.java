@@ -108,6 +108,34 @@ public class SeleniumeasyTests {
         //driver.get("https://www.seleniumeasy.com/test/");
     }
 
+    @Test(dataProvider="formValuesWithDataBase", dataProviderClass = com.seleniumeasy.hibernate.GetACustomer.class)
+    public void verifyInputFormSubmitPageTestsWithDataProviderDataBase(String firstName,
+                     String lastName,
+                     String eMail,
+                     String phone,
+                     String address,
+                     String city,
+                     String state,
+                     String zipCode,
+                     String websiteOrDomainName,
+                     String hosting,
+                     String projectDescription){
+        driver.get("https://www.seleniumeasy.com/test/input-form-demo.html");
+        InputFormSubmitPage inputFormSubmitPage = new InputFormSubmitPage(driver);
+        inputFormSubmitPage.
+                inputFormAndSubmit(firstName,
+                        lastName,
+                        eMail,
+                        phone,
+                        address,
+                        city,
+                        state,
+                        zipCode,
+                        websiteOrDomainName,
+                        hosting,
+                        projectDescription);
+    }
+
     @Test
     public void verifyAjaxFormSubmitPageTestsWithDataGenerator() throws InterruptedException{
         driver.get("https://www.seleniumeasy.com/test/ajax-form-submit-demo.html");
