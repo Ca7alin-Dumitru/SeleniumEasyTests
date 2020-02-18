@@ -108,8 +108,8 @@ public class SeleniumeasyTests {
         //driver.get("https://www.seleniumeasy.com/test/");
     }
 
-    @Test(dataProvider="formValuesWithDataBase", dataProviderClass = com.seleniumeasy.hibernate.GetACustomer.class)
-    public void verifyInputFormSubmitPageTestsWithDataProviderDataBase(String firstName,
+    @Test(dataProvider="formValuesWithDataBase", dataProviderClass = com.seleniumeasy.hibernate.ReadDB.class)
+    public void verifyInputFormSubmitPageTestsWithDataProviderDB(String firstName,
                      String lastName,
                      String eMail,
                      String phone,
