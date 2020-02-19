@@ -92,4 +92,13 @@
             </class>
         </classes>
     </test>
+
+    <test name="positive cucumber test" enabled="true">
+
+        <parameter name="browserName" value="chrome"/>
+
+        <classes>
+            <class name="layer.higher.SeleniumeasyCucumberTests"/>
+        </classes>
+    </test>
 </suite>

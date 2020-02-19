@@ -52,6 +52,10 @@ public class SeleniumeasyTests {
     WebDriver driver;
     WebDriverWait wait;
 
+    public void goTo(String url){
+        driver.get(url);
+    }
+
     @BeforeMethod
     @Parameters({"browserName"})
     public void startFlow(String browser) throws Exception{
@@ -687,6 +691,10 @@ public class SeleniumeasyTests {
         assertEquals(Integer.toString(a + b),driver.findElement(By.cssSelector("#displayvalue")).getText());
     }
 
+    public void tearDown(){
+        driver.close();
+    }
+
     @Parameters({"browserName"})
     @AfterMethod
     public void tearDown(ITestResult result, String browser){
@@ -701,4 +709,5 @@ public class SeleniumeasyTests {
         }
         driver.close();
     }
+
 }
