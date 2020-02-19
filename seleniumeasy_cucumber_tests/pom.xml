@@ -11,19 +11,4 @@
 
     <artifactId>seleniumeasy_cucumber_tests</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>2.3.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>2.3.1</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 </project>
