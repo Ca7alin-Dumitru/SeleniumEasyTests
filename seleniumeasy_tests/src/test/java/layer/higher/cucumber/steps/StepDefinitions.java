@@ -5,11 +5,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import layer.middle.SeleniumeasyTests;
-import pageobjects.input_forms_package.InputFormSubmitPage;
 
 public class StepDefinitions {
     SeleniumeasyTests test;
-    int count = 0;
 
     //createAnUser.feature
     @Given("^I have (\\w+) browser$")
