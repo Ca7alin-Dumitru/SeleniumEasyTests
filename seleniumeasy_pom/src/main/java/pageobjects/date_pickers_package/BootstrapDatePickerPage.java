@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.PageObject;
 import pageobjects.input_forms_package.JQuerySelectDropdownPage;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class BootstrapDatePickerPage extends PageObject {
     //this webelement is for Date Example section
     @FindBy(css = "#sandbox-container1 .form-control")
@@ -55,7 +58,7 @@ public class BootstrapDatePickerPage extends PageObject {
         this.monthsYearsPickerbutton.click();
         //span[text() = 'Mar']
         //th[text() = 1995]
-        new Actions(driver).click(driver.findElement(By.xpath("//span[text() = 'Feb']"))).perform();
+        new Actions(driver).click(driver.findElement(By.xpath("//span[text() = '" + (currentMonth()) + "']"))).perform();
         //this.waitForElementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Feb']")));
         this.todayDaysButton.click();
 
@@ -81,5 +84,26 @@ public class BootstrapDatePickerPage extends PageObject {
         new Actions(driver).click(driver.findElement(By.cssSelector("body > div.container-fluid.text-center > div > div.col-md-6.text-left > div:nth-child(2) > div > ul > li:nth-child(1)"))).perform();
 
         return new BootstrapDatePickerPage(driver);
+    }
+
+    public String currentMonth(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM");
+        String month = formatter.format(calendar.getTime());
+        switch (month){
+            case "01": month = "Jan"; break;
+            case "02": month = "Feb"; break;
+            case "03": month = "Mar"; break;
+            case "04": month = "Apr"; break;
+            case "05": month = "May"; break;
+            case "06": month = "Jun"; break;
+            case "07": month = "Jul"; break;
+            case "08": month = "Aug"; break;
+            case "09": month = "Sep"; break;
+            case "10": month = "Oct"; break;
+            case "11": month = "Nov"; break;
+            case "12": month = "Dec"; break;
+        }
+        return month;
     }
 }
