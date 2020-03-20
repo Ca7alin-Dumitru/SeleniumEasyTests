@@ -25,6 +25,7 @@
         <module>seleniumeasy_classdatainput_reader</module>
         <module>seleniumeasy_cucumber_reader</module>
         <module>useful_tools</module>
+        <module>restassured</module>
     </modules>
 
     <build>

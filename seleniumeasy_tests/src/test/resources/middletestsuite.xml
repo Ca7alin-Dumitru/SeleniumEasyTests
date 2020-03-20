@@ -2,6 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Middle TestSuite Service" parallel="tests" thread-count="1">
 
+    <!-- FE Tests -->
+
     <parameter name="browserName" value="chrome"/>
 
     <!-- Input Forms starts -->
@@ -99,6 +101,15 @@
 
         <classes>
             <class name="layer.higher.SeleniumeasyCucumberTests"/>
+        </classes>
+    </test>
+
+    <!-- BE Tests -->
+
+    <test name="api bdd test" enabled="true">
+
+        <classes>
+            <class name="layer.api.bdd.ApiBddTests"/>
         </classes>
     </test>
 </suite>
