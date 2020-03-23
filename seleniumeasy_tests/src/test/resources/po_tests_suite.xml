@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Middle TestSuite Service" parallel="tests" thread-count="1">
+
+    <!-- PO Tests -->
+
+    <test name="positive cucumber test" enabled="true">
+
+        <parameter name="browserName" value="chrome"/>
+
+        <classes>
+            <class name="layer.higher.SeleniumeasyCucumberTests"/>
+        </classes>
+    </test>
+
+</suite>
