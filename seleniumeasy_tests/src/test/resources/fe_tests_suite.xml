@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Middle TestSuite Service" parallel="tests" thread-count="1">
+
+    <!-- FE Tests -->
+
+    <parameter name="browserName" value="chrome"/>
+
+    <!-- Input Forms starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/basic-first-form-demo.html" class="input_forms_package.SimpleFormDemoPage" />-->
+    <parameter name="message" value="An automation message!" />
+    <parameter name="valueA" value="5" />
+    <parameter name="valueB" value="7" />
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/basic-checkbox-demo.html" class="input_forms_package.CheckboxDemoPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/basic-radiobutton-demo.html" class="input_forms_package.RadioButtonsDemoPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html" class="input_forms_package.SelectDropdownListPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/input-form-demo.html" class="input_forms_package.InputFormSubmitPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/ajax-form-submit-demo.html" class="input_forms_package.AjaxFormSubmitPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html" class="input_forms_package.JQuerySelectDropdownPage" />-->
+    <!-- Input Forms ends -->
+
+
+    <!-- Date pickers starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/bootstrap-date-picker-demo.html" class="date_pickers_package.BootstrapDatePickerPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/jquery-date-picker-demo.html" class="date_pickers_package.JQueryDatePickerPage" />-->
+    <!-- Date pickers ends -->
+
+
+    <!-- Table starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/table-pagination-demo.html" class="table_package.TablePaginationPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/table-search-filter-demo.html" class="table_package.TableDataSearchPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/table-records-filter-demo.html" class="table_package.TableFilterPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/table-sort-search-demo.html" class="table_package.TableSortAndSearchPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/table-data-download-demo.html" class="table_package.TableDataDownloadPage" />-->
+    <!-- Table ends -->
+
+
+    <!-- Progress Bars starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/jquery-download-progress-bar-demo.html" class="progress_bars_package.JQueryDownloadProgressBarsPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/bootstrap-download-progress-demo.html" class="progress_bars_package.BootStrapProgressBarPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/drag-drop-range-sliders-demo.html" class="progress_bars_package.DragAndDropSlidersPage" />-->
+    <!-- Progress Bars ends -->
+
+
+    <!-- Alerts & Modals starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/bootstrap-alert-messages-demo.html" class="alerts_and_modals_package.BootstrapAlertsPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/bootstrap-modal-demo.html" class="alerts_and_modals_package.BootstrapModalsPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/window-popup-modal-demo.html" class="alerts_and_modals_package.WindowPopupModalPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/bootstrap-progress-bar-dialog-demo.html" class="alerts_and_modals_package.ProgressBarModalPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/javascript-alert-box-demo.html" class="alerts_and_modals_package.JavaScriptAlertsPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/generate-file-to-download-demo.html" class="alerts_and_modals_package.FileDownloadPage" />-->
+    <!-- Alerts & Modals ends -->
+
+
+    <!-- List Box starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/bootstrap-dual-list-box-demo.html" class="list_box_package.BootstrapListBoxPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/jquery-dual-list-box-demo.html" class="list_box_package.JQueryListBoxPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/data-list-filter-demo.html" class="list_box_package.DataListFilterPage" />-->
+    <!-- List Box ends -->
+
+
+    <!-- Others starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/drag-and-drop-demo.html" class="others_package.DragAndDropPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/dynamic-data-loading-demo.html" class="others_package.DynamicDataLoadingPage" />-->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/charts-mouse-hover-demo.html" class="others_package.ChartsDemoPage" />-->
+    <!-- Others ends -->
+
+
+    <!-- Demo Home starts -->
+    <!-- <pageParameters url="https://www.seleniumeasy.com/test/" class="DemoHomePage" />-->
+    <!-- Demo Home ends -->
+
+
+    <test name="positive test Chrome" enabled="true">
+
+        <classes>
+            <class name="layer.middle.SeleniumeasyTests">
+                <methods>
+                    <exclude name="verifyDragAndDropPageTests" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="positive test firefox" enabled="true">
+
+        <parameter name="browserName" value="firefox"/>
+
+        <classes>
+            <class name="layer.middle.SeleniumeasyTests">
+                <methods>
+                    <exclude name="verifyDragAndDropPageTests" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
