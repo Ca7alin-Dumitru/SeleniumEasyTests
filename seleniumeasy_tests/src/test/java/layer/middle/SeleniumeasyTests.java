@@ -4,6 +4,9 @@ import data.generator.Address;
 import data.generator.Name;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import library.Utility;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -51,6 +54,19 @@ import static org.junit.Assert.*;
 public class SeleniumeasyTests {
     WebDriver driver;
     WebDriverWait wait;
+
+    private static Logger logger;
+    private static String failedMessage;
+
+    @BeforeClass
+    @Parameters({"browserName"})
+    public void setup(String browser){
+        logger = Logger.getLogger("ApiBddTests.class");
+        PropertyConfigurator.configure(System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" +
+                File.separator + "resources"+ File.separator +"log4j.properties");
+        logger.setLevel(Level.ERROR);
+        logger.info("=== FE Starts tests -> " + browser +" is used ===");
+    }
 
     public void goTo(String url){
         driver.get(url);
@@ -349,17 +365,20 @@ public class SeleniumeasyTests {
         JavaScriptAlertsPage javaScriptAlertsPage = new JavaScriptAlertsPage(driver);
         javaScriptAlertsPage.alertBoxDialog();
         Alert alert = driver.switchTo().alert();
+        failedMessage = "Test failed on the \"Java Script Alert Box\" section!";
         assertEquals("I am an alert box!", alert.getText());
         alert.accept();
 
         javaScriptAlertsPage.confirmBoxDialog();
         alert = driver.switchTo().alert();
+        failedMessage = "Test failed on the \"Java Script Confirm Box\" section!";
         assertEquals("Press a button!", alert.getText());
         alert.dismiss();
         assertEquals("You pressed Cancel!",driver.findElement(By.id("confirm-demo")).getText());
 
         javaScriptAlertsPage.promptBoxDialog();
         alert = driver.switchTo().alert();
+        failedMessage = "Test failed on the \"Java Script Alert Box 2\" section!";
         assertEquals("Please enter your name", alert.getText());
         alert.sendKeys("automation");
         alert.accept();
@@ -410,7 +429,9 @@ public class SeleniumeasyTests {
         BootstrapAlertsPage bootstrapAlertsPage = new BootstrapAlertsPage(driver);
         bootstrapAlertsPage.alertMessages("success");
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".alert.alert-success.alert-autocloseable-success")));
+        failedMessage = "Test failed on the \"autocloseable success message\" dialog!";
         assertFalse(driver.findElement(By.cssSelector(".alert.alert-success.alert-autocloseable-success")).isDisplayed());
+        failedMessage = "Test failed on the \"normal success message\" dialog!";
         assertTrue(driver.findElement(By.cssSelector(".alert.alert-success.alert-normal-success")).isDisplayed());
     }
 
@@ -443,6 +464,7 @@ public class SeleniumeasyTests {
         JQueryDownloadProgressBarsPage jQueryDownloadProgressBarsPage = new JQueryDownloadProgressBarsPage(driver);
         jQueryDownloadProgressBarsPage.startDownloadProcess();
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.className("progress-label")), "Complete!"));
+        failedMessage = "Test failed on the \"dialog\"!";
         assertTrue(driver.findElement(By.className("progress-label")).isDisplayed());
         jQueryDownloadProgressBarsPage.closeDownloadProcess();
         assertFalse(driver.findElement(By.className("progress-label")).isDisplayed());
@@ -485,6 +507,7 @@ public class SeleniumeasyTests {
         TableDataSearchPage tableDataSearchPage = new TableDataSearchPage(driver);
         tableDataSearchPage.tasksSection("in progress").listedUsersSection("2");
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.xpath("//td[text() = 'in progress']")), "in progress"));
+        failedMessage = "Test failed on the \"Tasks\" section!";
         assertTrue(driver.findElement(By.cssSelector("body > div.container-fluid.text-center > div > " +
                 "div.col-md-6.text-left > div:nth-child(3) > div > table > thead > tr > th:nth-child(1) > input")).isEnabled());
         assertTrue(driver.findElement(By.cssSelector("body > div.container-fluid.text-center > div > div.col-md-6.text-left > div:nth-child(3) > " +
@@ -494,6 +517,7 @@ public class SeleniumeasyTests {
 
         tableDataSearchPage.tasksSection().listedUsersSection();
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.xpath("//td[text() = 'completed']")), "completed"));
+        failedMessage = "Test failed on the \"Listed Users\" section!";
         assertFalse(driver.findElement(By.cssSelector("body > div.container-fluid.text-center > div > " +
                 "div.col-md-6.text-left > div:nth-child(3) > div > table > thead > tr > th:nth-child(1) > input")).isEnabled());
 
@@ -522,9 +546,11 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/bootstrap-date-picker-demo.html");
         BootstrapDatePickerPage bootstrapDatePickerPage = new BootstrapDatePickerPage(driver);
 
+        failedMessage = "Test failed on the \"Date Example :\" section!";
         assertEquals("dd/mm/yyyy",driver.findElement(By.xpath("//input[@placeholder='dd/mm/yyyy']")).getAttribute("placeholder"));
         bootstrapDatePickerPage.dateExampleSection("02/02/2020");
         new Actions(driver).click(driver.findElement(By.cssSelector(".input-group-addon"))).perform();
+        failedMessage = "Test failed on the \"Date Range Example :\" section!";
         assertEquals("2",driver.findElement(By.xpath("//td[contains(@class,'active')]")).getText());
 
         bootstrapDatePickerPage.dateRangeExampleSection("02/02/2020","08/09/2020");
@@ -541,9 +567,13 @@ public class SeleniumeasyTests {
                 selectMultipleValueSection(states).
                 dropdownWithDisabledValuesSection("Virgin Islands").
                 dropdownWithCategoryRelatedOptions("c");
+        failedMessage = "Test failed on the \"Drop Down with Search box\" section!";
         assertEquals("Japan",driver.findElement(By.id("select2-country-container")).getText());
+        failedMessage = "Test failed on the \"Select Multiple Values\" section!";
         assertEquals("Select state(s)", driver.findElement(By.className("select2-search__field")).getAttribute("placeholder"));
+        failedMessage = "Test failed on the \"Drop Down with Disabled values\" section!";
         assertEquals("Virgin Islands", driver.findElement(By.cssSelector("body > div.container-fluid.text-center > div > div.col-md-6.text-left > div:nth-child(4) > div > div.panel-body > span > span.selection > span > span")).getText());
+        failedMessage = "Test failed on the \"Drop-down with Category related options\" section!";
         assertTrue(driver.findElement(By.cssSelector("#files > optgroup:nth-child(2) > option:nth-child(1)")).isSelected());
     }
 
@@ -555,8 +585,10 @@ public class SeleniumeasyTests {
         ajaxFormSubmitPage.inputFormWithLoadingIcon("test","Say hello for my test!");
         assertTrue(driver.findElement(By.id("submit-control")).isDisplayed());
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Ajax Request is Processing!"));
+        failedMessage = "Test failed on the \"Ajax Form\" section at the \"Ajax Request is Processing!\" displayed!";
         assertEquals("Ajax Request is Processing!",driver.findElement(By.id("submit-control")).getText());
         wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.id("submit-control")), "Form submited Successfully!"));
+        failedMessage = "Test failed on the \"Ajax Form\" section at the \"Form submited Successfully!\" displayed!";
         assertEquals("Form submited Successfully!",driver.findElement(By.id("submit-control")).getText());
     }
 
@@ -591,7 +623,9 @@ public class SeleniumeasyTests {
                 multiSelectListDemoSection(states);
         assertTrue(driver.findElement(By.className("selected-value")).isDisplayed());
         assertTrue(driver.findElement(By.className("getall-selected")).isDisplayed());
+        failedMessage = "Test failed on the \"Select List Demo\" section!";
         assertEquals("Day selected :- " + day,driver.findElement(By.className("selected-value")).getText());
+        failedMessage = "Test failed on the \"Multi Select List Demo\" section!";
         assertEquals("Options selected are : " + states[states.length-1],driver.findElement(By.className("getall-selected")).getText());
     }
 
@@ -600,6 +634,7 @@ public class SeleniumeasyTests {
         driver.get("https://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
         RadioButtonsDemoPage radioButtonsDemoPage = new RadioButtonsDemoPage(driver);
         radioButtonsDemoPage.radioButtonDemoSection("male");
+        failedMessage = "Test failed on the \"Radio Button Demo\" section!";
         assertTrue(driver.findElement(By.className("radiobutton")).isDisplayed());
         assertEquals("Radio button 'Male' is checked",driver.findElement(By.className("radiobutton")).getText());
 
@@ -610,6 +645,7 @@ public class SeleniumeasyTests {
         int age = 5;
         String concat = "Sex : ";
         radioButtonsDemoPage.groupRadioButtonsDemoSection(sex,age);
+        failedMessage = "Test failed on the \"Group Radio Buttons Demo\" section!";
         assertTrue(driver.findElement(By.className("groupradiobutton")).isDisplayed());
 
         if(sex.equalsIgnoreCase("male")){
@@ -643,9 +679,11 @@ public class SeleniumeasyTests {
         //verify the 'click on this check box' is checked, displayed and shows the correct message
         assertTrue(driver.findElement(By.id("txtAge")).getCssValue("display").equalsIgnoreCase("block"));
         assertTrue(driver.findElement(By.id("txtAge")).isDisplayed());
+        failedMessage = "Test failed on the \"Single Checkbox Demo\" section at the \"message\" displayed when the checkbox is checked!";
         assertEquals("Success - Check box is checked",driver.findElement(By.id("txtAge")).getText());
         //verify the 'click on this check box' is unchecked
         checkboxDemoPage.singleCheckboxDemoSection();
+        failedMessage = "Test failed on the \"Single Checkbox Demo\" section at the checkbox when it is not checked!";
         assertTrue(driver.findElement(By.id("txtAge")).getCssValue("display").equalsIgnoreCase("none"));
 
         //Multiple Checkbox Demo section tests
@@ -655,6 +693,7 @@ public class SeleniumeasyTests {
                 multipleCheckboxDemoSection(3).
                 multipleCheckboxDemoSection(4);
         wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("check1")),"value","Uncheck All"));
+        failedMessage = "Test failed on the \"Multiple Checkbox Demo\" section!";
         assertTrue(driver.findElement(By.id("check1")).getAttribute("value").contains("Uncheck All"));
         checkboxDemoPage.multipleCheckboxDemoSection(5);
         wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("check1")),"value","Check All"));
@@ -672,7 +711,9 @@ public class SeleniumeasyTests {
         SimpleFormDemoPage simpleFormDemoPage = new SimpleFormDemoPage(driver);
         simpleFormDemoPage.singleInputFieldSection("").
                 twoInputFieldsSection("","");
+        failedMessage = "Test failed on the \"Single Input Field\" section at the \"Your message:\" displayed!";
         assertEquals("",driver.findElement(By.cssSelector("#display")).getText());
+        failedMessage = "Test failed on the \"Two Input Fields\" section at the \"Total a + b =\" displayed!";
         assertEquals("NaN",driver.findElement(By.cssSelector("#displayvalue")).getText());
     }
 
@@ -687,7 +728,9 @@ public class SeleniumeasyTests {
                 twoInputFieldsSection(valueA,valueB);
         int a = Integer.parseInt(valueA);
         int b = Integer.parseInt(valueB);
+        failedMessage = "Test failed on the \"Single Input Field\" section at the \"Your message:\" displayed!";
         assertEquals(message,driver.findElement(By.cssSelector("#display")).getText());
+        failedMessage = "Test failed on the \"Two Input Fields\" section at the \"Total a + b =\" displayed!";
         assertEquals(Integer.toString(a + b),driver.findElement(By.cssSelector("#displayvalue")).getText());
     }
 
@@ -706,8 +749,14 @@ public class SeleniumeasyTests {
             }catch (Exception e) {
                 System.out.println("Exception while taking screenshot "+e.getMessage());
             }
+            logger.error("Test: " + result.getName() + " method is with status FAILED! " + failedMessage);
         }
         driver.close();
+    }
+
+    @AfterClass
+    public void end() {
+        logger.info("=== FE tests end ===");
     }
 
 }
