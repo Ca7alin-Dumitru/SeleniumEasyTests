@@ -37,6 +37,7 @@ public class ApiBddTests {
         PropertyConfigurator.configure(System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" +
                 File.separator + "resources"+ File.separator +"log4j.properties");
         logger.setLevel(Level.ERROR);
+        logger.info("=== BE Starts tests ===");
     }
 
     @Test(priority = 1)
@@ -462,5 +463,10 @@ public class ApiBddTests {
                     then().
                             extract().response();
         }
+    }
+
+    @AfterClass
+    public void end() {
+        logger.info("=== BE tests end ===");
     }
 }
